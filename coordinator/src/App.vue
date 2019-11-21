@@ -1,20 +1,28 @@
 <template>
   <div id="app">
-    <Header />
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <NavBar />
+    <BodyHome :isInit="isInit" />
+    <Footer/>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-import Header from "./components/Header.vue";
+// import HelloWorld from "./components/HelloWorld.vue";
+import NavBar from "./components/NavBar.vue";
+import Footer from "./components/Footer.vue";
+import BodyHome from "./components/BodyHome.vue";
 
 export default {
   name: "app",
+  data() {
+    return {
+      isInit: true,
+    }
+  },
   components: {
-    HelloWorld,
-    Header
+    NavBar,
+    Footer,
+    BodyHome,
   }
 };
 </script>
@@ -26,6 +34,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 6px;
+  margin-top: 0 auto;
 }
+
 </style>
