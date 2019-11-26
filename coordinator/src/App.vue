@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <NavBar />
-    <BodyHome :isInit="isInit" />
+    <!-- <BodyHome :isInit="isInit" /> -->
+    <employees-list/>
     <Footer/>
   </div>
 </template>
@@ -11,6 +12,7 @@
 import NavBar from "./components/NavBar.vue";
 import Footer from "./components/Footer.vue";
 import BodyHome from "./components/BodyHome.vue";
+import EmployeesList from './components/EmployeesList.vue'
 
 export default {
   name: "app",
@@ -23,6 +25,7 @@ export default {
     NavBar,
     Footer,
     BodyHome,
+    EmployeesList
   }
 };
 </script>
