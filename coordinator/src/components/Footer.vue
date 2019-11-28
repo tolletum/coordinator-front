@@ -1,23 +1,23 @@
 <template>
-  <div class="footer">
-    <p>By Alberto Barrajón</p>
-  </div>
+    <div class="footer">
+        <p>By Alberto Barrajón</p>
+    </div>
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style scoped>
-  .footer {
+.footer {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #135e69;
+    background-color: #072146;
     color: white;
     text-align: right;
     padding-right: 10px;
     padding-top: 10px;
-  }
+}
 </style>

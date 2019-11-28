@@ -1,47 +1,42 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light p-3 bg-info text-white">
-    <a class="navbar-brand text-white" href="#">Next</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div>
+        <b-navbar toggleable="lg" type="dark" variant="info">
+            <b-navbar-brand :to="{ name: 'home' }" active-class="active" exact>
+                <img
+                    height="63"
+                    width="214"
+                    src="../../public/images/logo-next.png"
+                />
+            </b-navbar-brand>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">
-            Profiles
-          </a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Teams</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Projects</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Employees</a>
-        </li>
-      </ul>
-      <!-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
+            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+            <b-collapse id="nav-collapse" is-nav>
+                <b-navbar-nav>
+                    <b-nav-item
+                        :to="{ name: 'profiles-list' }"
+                        active-class="active"
+                        >Profiles</b-nav-item
+                    >
+                    <b-nav-item disabled>Teams</b-nav-item>
+                    <b-nav-item disabled>Projects</b-nav-item>
+                    <b-nav-item
+                        :to="{ name: 'employees-list' }"
+                        active-class="active"
+                        >Employees</b-nav-item
+                    >
+                </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
     </div>
-  </nav>
-
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style scoped>
+.navbar {
+    background-color: #072146 !important;
+}
 </style>

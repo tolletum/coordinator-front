@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <NavBar />
-    <!-- <BodyHome :isInit="isInit" /> -->
-    <employees-list/>
+    <router-view></router-view>
     <Footer/>
   </div>
 </template>
@@ -11,21 +10,17 @@
 // import HelloWorld from "./components/HelloWorld.vue";
 import NavBar from "./components/NavBar.vue";
 import Footer from "./components/Footer.vue";
-import BodyHome from "./components/BodyHome.vue";
-import EmployeesList from './components/EmployeesList.vue'
 
 export default {
   name: "app",
   data() {
     return {
-      isInit: true,
+      
     }
   },
   components: {
     NavBar,
     Footer,
-    BodyHome,
-    EmployeesList
   }
 };
 </script>

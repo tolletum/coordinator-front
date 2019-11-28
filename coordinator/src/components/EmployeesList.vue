@@ -1,45 +1,84 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <h1>LISTADO DE EMPLEADOS</h1>
-    </div>
-    <div class="row">
-      <div class="col-sm">Id</div>
-      <div class="col-sm">Name</div>
-      <div class="col-sm">LastName</div>
-      <div class="col-sm">Chargeability</div>
-      <div class="col-sm">Profile</div>
-    </div>
-    <div class="row" v-for="employee in employees" :key="employee.id">
-      <div class="col-sm">{{ employee.id }}</div>
-      <div class="col-sm">{{ employee.name }}</div>
-      <div class="col-sm">{{ employee.lastName }}</div>
-      <div class="col-sm">{{ employee.chargeability }}</div>
-      <div class="col-sm">{{ employee.profile.description }}</div>
-    </div>
-  </div>
+    <b-container>
+        <br />
+        <b-container align="center">
+            <h1>LISTADO DE EMPLEADOS</h1>
+            <b-row>
+                <b-col sm align="right">
+                    <v-icon name="plus-circle" class="icon-insert"></v-icon>
+                </b-col>
+            </b-row>
+        </b-container>
+
+        <br />
+        <b-row class="row-header">
+            <b-col sm class="col-header">Id</b-col>
+            <b-col sm class="col-header">Name</b-col>
+            <b-col sm class="col-header">LastName</b-col>
+            <b-col sm class="col-header">Chargeability</b-col>
+            <b-col sm class="col-header">Profile</b-col>
+        </b-row>
+        <b-row v-for="employee in employees" :key="employee.id">
+            <b-col sm>{{ employee.id }}</b-col>
+            <b-col sm>{{ employee.name }}</b-col>
+            <b-col sm>{{ employee.lastName }}</b-col>
+            <b-col sm>{{ employee.chargeability }}</b-col>
+            <b-col sm>{{ employee.profile.description }}</b-col>
+        </b-row>
+        <b-alert show variant="warning" v-if="isEmployeesListEmpty"
+            >No Results</b-alert
+        >
+    </b-container>
 </template>
 <script>
+import { coordinatorsClient } from '../utils/'
+
 export default {
-  data() {
-    return {
-      employees: []
-    };
-  },
-  created() {
-    this.$http
-      .get('employees')
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        const resultArray = [];
-        for (let key in data) {
-          resultArray.push(data[key]);
+    data() {
+        return {
+            employees: [],
+            isEmployeesListEmpty: true,
         }
-        this.employees = resultArray;
-      });
-  }
-};
+    },
+    created() {
+        coordinatorsClient
+            .get('employees')
+            .then(response => {
+                this.employees = response.data
+                if (this.employees && this.employees.length > 0) {
+                    this.isEmployeesListEmpty = false
+                }
+            })
+            .catch(error => alert(error))
+        // {
+        //     const resultArray = []
+        //     for (let key in data) {
+        //         resultArray.push(data[key])
+        //     }
+        //     this.employees = resultArray
+        //     if (this.employees && this.employees.length > 0) {
+        //         this.isEmployeesListEmpty = false
+        //     }
+        // })
+    },
+}
 </script>
-<style lang="stylus" scoped></style>
+<style scoped>
+.col-header {
+    color: #1973b8;
+    font-weight: bold;
+    font-size: 1.15rem;
+}
+.row-header {
+    background-color: #2dcccd;
+}
+.alert {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.icon-insert {
+    width: 35px;
+    color: #1973b8;
+    cursor: pointer;
+}
+</style>
