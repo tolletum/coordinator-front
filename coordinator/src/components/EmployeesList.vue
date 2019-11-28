@@ -11,7 +11,16 @@
         </b-container>
 
         <br />
-        <b-row class="row-header">
+        <b-table
+            striped
+            hover
+            small
+            :items="employees"
+            :fields="fields"
+            responsive="sm"
+        >
+        </b-table>
+        <!-- <b-row class="row-header">
             <b-col sm class="col-header">Id</b-col>
             <b-col sm class="col-header">Name</b-col>
             <b-col sm class="col-header">LastName</b-col>
@@ -24,7 +33,7 @@
             <b-col sm>{{ employee.lastName }}</b-col>
             <b-col sm>{{ employee.chargeability }}</b-col>
             <b-col sm>{{ employee.profile.description }}</b-col>
-        </b-row>
+        </b-row> -->
         <b-alert show variant="warning" v-if="isEmployeesListEmpty"
             >No Results</b-alert
         >
@@ -36,6 +45,15 @@ import { coordinatorsClient } from '../utils/'
 export default {
     data() {
         return {
+            fields: [
+                'id',
+                'name',
+                'lastName',
+                'chargeability',
+                'isCoordinator',
+                { key: 'profile.description', label: 'Profile Description' },
+                { key: 'team.description', label: 'Team Description' },
+            ],
             employees: [],
             isEmployeesListEmpty: true,
         }

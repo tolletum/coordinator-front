@@ -15,7 +15,15 @@
             </b-row>
         </b-container>
         <br />
-        <b-row class="row-header">
+        <b-table
+            striped
+            hover
+            small
+            :items="profiles"
+            :fields="fields"
+            responsive="sm"
+        ></b-table>
+        <!-- <b-row class="row-header">
             <b-col sm class="col-header">Id</b-col>
             <b-col sm class="col-header">Description</b-col>
             <b-col sm class="col-header">Rate</b-col>
@@ -24,7 +32,7 @@
             <b-col sm>{{ profile.id }}</b-col>
             <b-col sm>{{ profile.description }}</b-col>
             <b-col sm>{{ profile.rate }}</b-col>
-        </b-row>
+        </b-row> -->
         <b-alert show variant="warning" v-if="isProfilesListEmpty"
             >No Results</b-alert
         >
