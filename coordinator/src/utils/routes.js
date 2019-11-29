@@ -22,4 +22,5 @@ export const routes = [
         component: ProfilesEdit,
         name: 'profiles-edit',
     },
+    { path: '*', redirect: '/' },
 ]

@@ -6,14 +6,15 @@
             <b-row>
                 <b-col sm align="right">
                     <b-link :to="{ name: 'employees-edit' }">
-                        <v-icon name="plus-circle" class="icon-insert"></v-icon
-                    ></b-link>
+                        <v-icon name="plus-circle" class="icon-insert"></v-icon>
+                    </b-link>
                 </b-col>
             </b-row>
         </b-container>
 
         <br />
         <b-table
+            sticky-header
             selectable
             selectMode="single"
             striped
@@ -23,11 +24,8 @@
             :fields="fields"
             responsive="sm"
             @row-selected="onRowSelected"
-        >
-        </b-table>
-        <b-alert show variant="warning" v-if="isEmployeesListEmpty"
-            >No Results</b-alert
-        >
+        ></b-table>
+        <b-alert show variant="warning" v-if="isEmployeesListEmpty">No Results</b-alert>
     </b-container>
 </template>
 <script>
