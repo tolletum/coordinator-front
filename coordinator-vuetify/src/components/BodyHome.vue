@@ -1,12 +1,11 @@
 <template>
-    <div>
-      <img alt="Vue logo" src="../../public/images/init.jpg" width="100%" />
-    </div>
+  <v-container fluid>
+    <img alt="Vue logo" src="../../public/images/init.jpg" width="100%" height="790px" />
+  </v-container>
 </template>
 
 <script>
-export default {
-}
+export default {};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

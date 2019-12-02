@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="primary" dark>
+  <v-app-bar app color="primary" dark height="74px">
     <div class="d-flex align-center">
       <router-link to="{ name: 'home' }">
         <v-img
