@@ -20,12 +20,10 @@ const router = new VueRouter({
 Vue.use(BootstrapVue)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import vuetify from './plugins/vuetify';
 
 Vue.use(feather, 'v-icon')
 
 new Vue({
     render: h => h(App),
-    vuetify,
-    router
+    router,
 }).$mount('#app')
