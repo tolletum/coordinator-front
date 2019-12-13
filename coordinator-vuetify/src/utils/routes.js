@@ -1,7 +1,6 @@
 import BodyHome from '../components/BodyHome.vue'
 import EmployeesList from '../components/EmployeesList.vue'
 import ProfilesList from '../components/ProfilesList.vue'
-import ProfilesEdit from '../components/ProfilesEdit.vue'
 import EmployeesEdit from '../components/EmployeesEdit.vue'
 
 export const routes = [
@@ -16,11 +15,6 @@ export const routes = [
         path: '/profiles/',
         component: ProfilesList,
         name: 'profiles-list',
-    },
-    {
-        path: '/profiles/edit/',
-        component: ProfilesEdit,
-        name: 'profiles-edit',
     },
     { path: '*', redirect: '/' },
 ]

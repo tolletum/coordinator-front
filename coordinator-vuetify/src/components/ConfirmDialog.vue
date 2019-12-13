@@ -8,10 +8,10 @@
                 <v-card-text>{{ confirmDialog.message }}</v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="green darken-1" text @click="dialog = false"
+                    <v-btn color="green darken-1" text @click="onCancel"
                         >Disagree</v-btn
                     >
-                    <v-btn color="green darken-1" text @click="dialog = false"
+                    <v-btn color="green darken-1" text @click="onAccept"
                         >Agree</v-btn
                     >
                 </v-card-actions>
@@ -34,6 +34,14 @@ export default {
     watch: {
         'confirmDialog.show': function(newValue) {
             this.dialog = !!newValue
+        },
+    },
+    methods: {
+        onAccept() {
+            this.confirmDialog.accept()
+        },
+        onCancel() {
+            this.confirmDialog.cancel()
         },
     },
 }

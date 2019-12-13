@@ -5,8 +5,14 @@ const mutations = {
             show: true,
         }
     },
-}
 
-export default {
-    mutations,
+    HIDE_CONFIRMDIALOG: state => {
+        state.confirmDialog = {
+            show: 0,
+            accept: () => {},
+            title: '',
+            meessage: '',
+        }
+    },
 }
+export default mutations

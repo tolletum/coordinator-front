@@ -26,20 +26,20 @@ export default {
 </script>
 
 <style>
-#app {
+/* #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
     margin-top: 0 auto;
-}
+} */
 
-.icon-insert {
+/* .icon-insert {
     width: 40px;
     color: black;
     cursor: pointer;
-}
+} */
 .slide-leave-active {
     transition: opacity 1s ease;
     opacity: 0;

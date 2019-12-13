@@ -2,8 +2,9 @@ const actions = {
     setConfirmDialog: async ({ commit }, payload) => {
         commit('SET_CONFIRMDIALOG', payload)
     },
-}
 
-export default {
-    actions,
+    hideConfirmDialog: async ({ commit }) => {
+        commit('HIDE_CONFIRMDIALOG')
+    },
 }
+export default actions

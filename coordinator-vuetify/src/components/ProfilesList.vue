@@ -18,15 +18,11 @@
                             <v-btn dark fab top right color="pink" v-on="on">
                                 <v-icon>mdi-plus</v-icon>
                             </v-btn>
-                            <!-- <v-btn color="primary" dark class="mb-2" v-on="on"
-                >New Profile</v-btn
-              > -->
                         </template>
                         <v-card>
                             <v-card-title>
                                 <span class="headline">{{ formTitle }}</span>
                             </v-card-title>
-
                             <v-card-text style="height: 300px">
                                 <v-container>
                                     <v-row>
@@ -56,12 +52,8 @@
                                             ></v-text-field>
                                         </v-col>
                                     </v-row>
-                                    <!-- <v-row>
-                    <v-col cols="12" sm="6" md="4"> </v-col>
-                  </v-row> -->
                                 </v-container>
                             </v-card-text>
-
                             <v-card-actions>
                                 <v-spacer></v-spacer>
                                 <v-btn color="blue darken-1" text @click="close"
@@ -91,6 +83,7 @@
 <script>
 import profileApi from '../api/profiles'
 import { mapActions } from 'vuex'
+import { mapState } from 'vuex'
 import ConfirmDialog from './ConfirmDialog.vue'
 
 export default {
@@ -102,7 +95,6 @@ export default {
                 { text: 'Rate', value: 'rate', align: 'right' },
                 { text: 'Actions', value: 'action', sortable: false },
             ],
-            profiles: [],
             isProfilesListEmpty: false,
             editedIndex: -1,
             editedProfile: {
@@ -125,6 +117,7 @@ export default {
         formTitle() {
             return this.editedIndex === -1 ? 'New Profile' : 'Edit Profile'
         },
+        ...mapState('profiles', ['profiles']),
     },
 
     watch: {
@@ -134,7 +127,9 @@ export default {
     },
 
     methods: {
-        ...mapActions(['setConfirmDialog']),
+        ...mapActions(['setConfirmDialog', 'hideConfirmDialog']),
+
+        ...mapActions('profiles', ['listProfiles']),
 
         editItem(profile) {
             this.editedProfile = Object.assign({}, profile)
@@ -144,9 +139,22 @@ export default {
             this.setConfirmDialog({
                 title: 'Delete a profile',
                 message: `You are going to delete profile with id ${profile.id}, are you sure?`,
+                accept: async () => {
+                    try {
+                        await profileApi.deleteProfile(profile.id)
+                    } catch (error) {
+                        this.$toast(
+                            `Error deleting profile with id: ${profile.id}. ${error.message}`
+                        )
+                    } finally {
+                        this.hideConfirmDialog()
+                        await this.listProfiles()
+                    }
+                },
+                cancel: async () => {
+                    this.hideConfirmDialog()
+                },
             })
-            // await profileApi.deleteProfile(profile.id);
-            // this.profiles = await profileApi.listProfiles();
         },
         async save() {
             if (this.editedProfile.id) {
@@ -154,9 +162,8 @@ export default {
             } else {
                 await profileApi.insertProfile(this.editedProfile)
             }
-            this.profiles = await profileApi.listProfiles()
+            await this.listProfiles()
             this.dialogProfile = false
-            this.$forceUpdate()
         },
         close() {
             this.dialogProfile = false
@@ -165,15 +172,9 @@ export default {
                 this.editedIndex = -1
             }, 300)
         },
-        onRowSelected(profiles) {
-            this.$router.push({
-                name: 'profiles-edit',
-                params: { profileExistent: profiles[0] },
-            })
-        },
     },
     async created() {
-        this.profiles = await profileApi.listProfiles()
+        await this.listProfiles()
         if (this.profiles && this.profiles.length > 0) {
             this.isProfilesListEmpty = false
         }
