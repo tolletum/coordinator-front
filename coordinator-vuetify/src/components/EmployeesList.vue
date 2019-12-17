@@ -89,8 +89,9 @@
                                             <v-select
                                                 :items="profiles"
                                                 item-text="description"
-                                                item-value="id"
+                                                return-object
                                                 label="Profile"
+                                                v-model="editedEmployee.profile"
                                             ></v-select>
                                         </v-col>
                                     </v-row>
@@ -99,8 +100,9 @@
                                             <v-select
                                                 :items="teams"
                                                 item-text="description"
-                                                item-value="id"
+                                                return-object
                                                 label="Team"
+                                                v-model="editedEmployee.team"
                                             ></v-select>
                                         </v-col>
                                     </v-row>
@@ -134,8 +136,7 @@
 </template>
 <script>
 import employeeApi from '../api/employees'
-import { mapActions } from 'vuex'
-import { mapState } from 'vuex'
+import { mapActions, mapState} from 'vuex'
 import ConfirmDialog from './ConfirmDialog.vue'
 
 export default {
@@ -194,6 +195,7 @@ export default {
         ...mapState('profiles', ['profiles']),
 
         ...mapState('teams', ['teams']),
+
     },
 
     watch: {
@@ -213,6 +215,7 @@ export default {
 
         async editItem(employee) {
             await this.onDialogOpen()
+            this.editedIndex = this.employees.indexOf(employee);
             this.editedEmployee = Object.assign({}, employee)
             this.dialogEmployee = true
         },
@@ -238,10 +241,22 @@ export default {
             })
         },
         async save() {
-            if (this.editedEmployee.id) {
-                await employeeApi.updateEmployee(this.editedEmployee)
+            if (this.editedIndex !== -1) {
+                try {
+                    await employeeApi.updateEmployee(this.editedEmployee)
+                } catch (error) {
+                    this.$toast(
+                        `Error updating employee with id: ${this.editedEmployee.id}. ${error.message}`
+                    )
+                }
             } else {
-                await employeeApi.insertEmployee(this.editedEmployee)
+                try {
+                    await employeeApi.insertEmployee(this.editedEmployee)
+                } catch (error) {
+                    this.$toast(
+                        `Error updating employee with id: ${this.editedEmployee.id}. ${error.message}`
+                    )
+                }
             }
             await this.listEmployees()
             this.dialogEmployee = false
