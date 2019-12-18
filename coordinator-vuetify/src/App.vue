@@ -1,16 +1,14 @@
 <template>
-    <div id="app">
-        <v-app>
-            <NavBar />
-            <br />
-            <br />
-            <br />
-            <transition name="slide" mode="out-in">
-                <router-view></router-view>
-            </transition>
-            <Footer />
-        </v-app>
-    </div>
+    <v-app>
+        <NavBar />
+        <br />
+        <br />
+        <br />
+        <transition name="slide" mode="out-in">
+            <router-view></router-view>
+        </transition>
+        <Footer />
+    </v-app>
 </template>
 
 <script>
