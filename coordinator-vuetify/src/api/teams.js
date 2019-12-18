@@ -4,27 +4,27 @@ const listTeams = async () => {
     return (await coordinatorsClient.get('teams')).data
 }
 
-// const updateEmployee = async employee => {
-//     return (
-//         await coordinatorsClient.patch(`employees/${employee.id}`, employee)
-//     ).data
-// }
+const updateTeam = async team => {
+    return (
+        await coordinatorsClient.patch(`teams/${team.id}`, team)
+    ).data
+}
 
-// const insertEmployee = async employee => {
-//     return (await coordinatorsClient.post('employees', employee)).data
-// }
+const insertTeam = async team => {
+    return (await coordinatorsClient.post('teams', team)).data
+}
 
-// const deleteEmployee = async id => {
-//     try {
-//         return (await coordinatorsClient.delete(`employees/${id}`)).data
-//     } catch (error) {
-//         throw new Error(error)
-//     }
-// }
+const deleteTeam = async id => {
+    try {
+        return (await coordinatorsClient.delete(`teams/${id}`)).data
+    } catch (error) {
+        throw new Error(error)
+    }
+}
 
 export default {
     listTeams,
-    // updateEmployee,
-    // insertEmployee,
-    // deleteEmployee,
+    updateTeam,
+    insertTeam,
+    deleteTeam,
 }

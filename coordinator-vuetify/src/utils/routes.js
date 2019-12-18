@@ -1,20 +1,31 @@
 import BodyHome from '../components/BodyHome.vue'
 import EmployeesList from '../components/EmployeesList.vue'
 import ProfilesList from '../components/ProfilesList.vue'
-import EmployeesEdit from '../components/EmployeesEdit.vue'
+import TeamsList from '../components/TeamsList.vue'
 
 export const routes = [
-    { path: '/', component: BodyHome, name: 'home' },
-    { path: '/employees/', component: EmployeesList, name: 'employees-list' },
-    {
-        path: '/employees/edit',
-        component: EmployeesEdit,
-        name: 'employees-edit',
+    { 
+        path: '/', 
+        component: BodyHome, 
+        name: 'home' 
+    },
+    { 
+        path: '/employees/', 
+        component: EmployeesList, 
+        name: 'employees-list' 
     },
     {
         path: '/profiles/',
         component: ProfilesList,
         name: 'profiles-list',
     },
-    { path: '*', redirect: '/' },
+    {
+        path: '/teams/',
+        component: TeamsList,
+        name: 'teams-list',
+    },
+    { 
+        path: '*', 
+        redirect: '/' 
+    },
 ]
