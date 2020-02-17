@@ -7,6 +7,7 @@ import mutations from './mutations'
 import profiles from './modules/profiles'
 import employees from './modules/employees'
 import teams from './modules/teams'
+import projects from './modules/projects'
 
 Vue.use(Vuex)
 
@@ -26,5 +27,6 @@ export default new Vuex.Store({
         profiles,
         employees,
         teams,
+        projects,
     },
 })

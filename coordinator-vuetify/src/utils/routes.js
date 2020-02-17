@@ -2,6 +2,7 @@ import BodyHome from '../components/BodyHome.vue'
 import EmployeesList from '../components/EmployeesList.vue'
 import ProfilesList from '../components/ProfilesList.vue'
 import TeamsList from '../components/TeamsList.vue'
+import ProjectsList from '../components/ProjectsList.vue'
 
 export const routes = [
     { 
@@ -23,6 +24,11 @@ export const routes = [
         path: '/teams/',
         component: TeamsList,
         name: 'teams-list',
+    },
+    {
+        path: '/projects/',
+        component: ProjectsList,
+        name: 'projects-list',
     },
     { 
         path: '*', 

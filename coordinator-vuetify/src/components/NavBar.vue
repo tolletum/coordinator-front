@@ -19,7 +19,7 @@
     <v-btn text :to="{ name: 'teams-list' }">
       <span class="mr-2">Teams</span>
     </v-btn>
-    <v-btn text disabled>
+    <v-btn text :to="{ name: 'projects-list' }">
       <span class="mr-2">Projects</span>
     </v-btn>
     <v-btn text :to="{ name: 'employees-list' }">
