@@ -25,6 +25,9 @@
     <v-btn text :to="{ name: 'employees-list' }">
       <span class="mr-2">Employees</span>
     </v-btn>
+    <v-btn text :to="{ name: 'hours-quarter' }">
+      <span class="mr-2">Hours By Quarter</span>
+    </v-btn>
   </v-app-bar>
 </template>
 

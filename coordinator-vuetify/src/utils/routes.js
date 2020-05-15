@@ -3,6 +3,7 @@ import EmployeesList from '../components/EmployeesList.vue'
 import ProfilesList from '../components/ProfilesList.vue'
 import TeamsList from '../components/TeamsList.vue'
 import ProjectsList from '../components/ProjectsList.vue'
+import HoursQ from '../components/HoursQ.vue'
 
 export const routes = [
     { 
@@ -29,6 +30,11 @@ export const routes = [
         path: '/projects/',
         component: ProjectsList,
         name: 'projects-list',
+    },
+    {
+        path: '/hours-quarter/',
+        component: HoursQ,
+        name: 'hours-quarter',
     },
     { 
         path: '*', 
