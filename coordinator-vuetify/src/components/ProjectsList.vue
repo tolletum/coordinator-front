@@ -15,7 +15,7 @@
                     item-text="description"
                     label="Search By Team"
                     v-model="searchByTeam"
-                    style="width: 50%; padding-top: 23px;padding-left: 20px"
+                    style="width: 10%; padding-top: 23px;padding-left: 20px"
                 ></v-select>
 
                 <v-toolbar flat color="white">
